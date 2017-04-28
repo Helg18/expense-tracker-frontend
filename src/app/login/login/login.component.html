@@ -1,0 +1,21 @@
+<div class="container">
+	<div class="mainbox">
+		<p class="titulo">Inicio de sesion</p>
+		<div class="loginbox">
+			<div class="row">
+				<span>Email</span>
+				<input type="email" name="email" class="full-width" autocomplete="off" required>
+			</div>
+			<div class="row">
+				<span>Password</span>
+				<input type="password" name="password" class="full-width" required>
+			</div>
+			<div class="row">
+				<p><input type="button" name="clear" value="Clear" class="btn">
+				<input type="submit" name="submit" value="Login me!" class="btn btn-primary"></p>
+			</div>
+		</div>
+		<p class="nota">No tienes cuenta? &nbsp;<a [routerLink]=" ['register'] ">registrate aqui</a></p>
+	</div>
+
+</div>
