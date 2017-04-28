@@ -4,15 +4,25 @@ import { ShellComponent } from './shell/shell.component';
 import { TopBarComponent } from './shell/top-bar/top-bar.component';
 import { MainContentComponent } from './shell/main-content/main-content.component';
 import { FooterComponent } from './shell/footer/footer.component';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+   {
+     path: '',
+     loadChildren: './../home/home.module#HomeModule'
+   }
+];
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forRoot(routes),
   ],
   declarations: [
 			  		ShellComponent, 
 			  		TopBarComponent, 
-			  		MainContentComponent, FooterComponent
+			  		MainContentComponent, 
+            FooterComponent
 		  		],
   exports:[
   			ShellComponent
