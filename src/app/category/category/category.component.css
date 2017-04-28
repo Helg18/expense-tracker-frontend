@@ -1,0 +1,31 @@
+.loginbox{
+	background-color: #eee;
+	border-radius: 5px;
+	padding: 10px;
+
+}
+
+.row{
+	display: flex;
+	flex-direction: column;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.row span{
+	font-size: 24px;
+	padding: 3px 3px;
+}
+
+.add-category{
+	width: 100%;
+	display: inline-flex;
+}
+.add-category form{
+	display: flex;
+	width: 87%;
+}
+
+.add-category form input[type=text]{
+	margin-top: 15px;
+}
