@@ -22,6 +22,10 @@ const routes: Routes = [
    {
      path: 'categories',
      loadChildren: './../category/category.module#CategoryModule'
+   },
+   {
+     path: 'transactions',
+     loadChildren: './../transaction/transaction.module#TransactionModule'
    }
 ];
 
