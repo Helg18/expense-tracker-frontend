@@ -19,6 +19,7 @@ body{
 	border-radius: 5px;
 	flex-direction: column;
 	flex-basis: 40%;
+	overflow: hidden;
 }
 
 .mainbox{
@@ -64,7 +65,7 @@ a {
   height: 34px;
   padding: 6px 12px;
   font-size: 14px;
-  line-height: 1.42857143;	
+  line-height: 1.5;	
 }
 
 input[type=text],
@@ -73,7 +74,7 @@ input[type=email],
 input[type=number]
 {
   font-size: 14px;
-  line-height: 1.42857143;
+  line-height: 1.5;
   color: #555555;
   background-color: #ffffff;
   border: 1px solid #cccccc;
@@ -91,4 +92,36 @@ input[type=number]
 .btn-primary{
 	background-color: tomato;
 	color: white;
+}
+
+table, thead, tbody{
+	background-color: #eee;
+	width: 100%;
+	display: block;
+}
+thead, tbody{
+	align-content: center;
+	padding: 20px auto;
+	width: 100%;
+}
+thead{
+	display: flex;
+	justify-content: space-around;
+	border-bottom: 1px solid #444;	
+}
+
+tr{
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	border-bottom: 1px solid #444;
+}
+
+tr:hover{
+	background-color: rgba(0,0,0, 0.05);
+}
+
+td{
+	flex-basis: 33%;
+	margin: 15px auto;
 }

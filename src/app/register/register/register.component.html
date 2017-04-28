@@ -1,8 +1,12 @@
 <div class="container">
 	<div class="mainbox">
-		<p class="titulo">Inicio de sesion</p>
+		<p class="titulo">Registro de usuario</p>
 		<form>
 			<div class="loginbox">
+				<div class="row">
+					<span>Name</span>
+					<input type="text" name="name" class="full-width" autocomplete="off" required>
+				</div>
 				<div class="row">
 					<span>Email</span>
 					<input type="email" name="email" class="full-width" autocomplete="off" required>
@@ -13,11 +17,11 @@
 				</div>
 				<div class="row">
 					<p><input type="button" name="clear" value="Clear" class="btn">
-					<input type="submit" name="submit" value="Login me!" class="btn btn-primary"></p>
+					<input type="submit" name="submit" value="Register me!" class="btn btn-primary"></p>
 				</div>
 			</div>
 		</form>
-		<p class="nota">No tienes cuenta? &nbsp;<a [routerLink]=" ['/register'] ">registrate aqui</a></p>
+		<p class="nota">Ya tienes cuenta? &nbsp;<a [routerLink]=" ['../login'] ">inicia sesion</a></p>
 	</div>
 
 </div>
