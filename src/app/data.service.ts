@@ -9,11 +9,13 @@ export class DataService {
 	public client_secret;
 
 	//End points
-	public urlLogin;
+  public urlLogin;
+	public urlRegister;
 
 
   constructor( private http: Http) { 
-  	this.urlLogin = 'http://127.0.0.1:8000/oauth/token';
+    this.urlLogin = 'http://127.0.0.1:8000/oauth/token';
+  	this.urlRegister = 'http://127.0.0.1:8000/api/register';
   	this.grant_type = 'password';
   	this.client_id = '2';
   	this.client_secret = 'bPJPNVw09uNa1a430OBrm7NjRbrtGFMn4IJCBOmj';
@@ -35,16 +37,47 @@ export class DataService {
   								client_secret: this.client_secret
   								 });
   	headers.append('Content-Type', 'application/json');
-  	console.log(params);
+    //console.log(params);
   	return this.http.post(this.urlLogin, params, { headers: headers })
   									.map(response => response.json())
   									.subscribe(
 							  			(data) => {
-							  									console.log(data),
+							  									//console.log(data),
 							  									window.sessionStorage.setItem('miToken', 'Bearer '+data.access_token),
-							  									console.log( window.sessionStorage.getItem('miToken') )
-							  			}
+                                  alert("Has iniciado sesion con exito :) ")
+							  			});
+  }// fin loginme
 
-							  		);
-  }
+
+  registerme(data){
+    if ( data.name == '' || data.name == undefined ||
+         data.email == '' || data.email == undefined ||
+         data.password == '' || data.password == undefined
+         ) {
+              alert('Rellena todos los campos');
+            } //end if validador
+
+    let headers = new Headers();
+    let params = JSON.stringify({
+                  name: data.name,
+                  email: data.email,
+                  password: data.password
+                   });
+    headers.append('Content-Type', 'application/json');
+    console.log(params);
+
+    return this.http.post(this.urlRegister, params, {headers: headers})
+                    .map( response => response.json())
+                    .subscribe(
+                      (data) => {
+                        console.log(data);
+                        alert(data.msg)
+                      });
+
+
+  }//end registerme
+
+  
+
 }
+
