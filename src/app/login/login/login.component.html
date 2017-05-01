@@ -1,19 +1,18 @@
 <div class="container">
 	<div class="mainbox">
 		<p class="titulo">Inicio de sesion</p>
-		<form>
+		<form (ngSubmit)="login(this);">
 			<div class="loginbox">
 				<div class="row">
 					<span>Email</span>
-					<input type="email" name="email" class="full-width" autocomplete="off" required>
+					<input type="email" name="email" class="full-width" [(ngModel)]="email">
 				</div>
 				<div class="row">
 					<span>Password</span>
-					<input type="password" name="password" class="full-width" required>
+					<input type="password" name="password" class="full-width" [(ngModel)]="password">
 				</div>
 				<div class="row">
-					<p><input type="button" name="clear" value="Clear" class="btn">
-					<input type="submit" name="submit" value="Login me!" class="btn btn-primary"></p>
+					<button class="btn btn-primary">Loggin me!</button>
 				</div>
 			</div>
 		</form>
