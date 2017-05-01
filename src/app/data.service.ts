@@ -21,6 +21,11 @@ export class DataService {
   }
 
   loginme(data){
+  	if (data.email == undefined || data.email == '' ||
+  			data.password == undefined || data.password == '') {
+  		alert('Complete los campos de email y password');
+  		return false;
+  	}
   	let headers = new Headers();
   	let params = JSON.stringify({
   								username: data.email, 

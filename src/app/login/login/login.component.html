@@ -5,11 +5,11 @@
 			<div class="loginbox">
 				<div class="row">
 					<span>Email</span>
-					<input type="email" name="email" class="full-width" [(ngModel)]="email">
+					<input type="email" name="email" class="full-width" [(ngModel)]="email" autocomplete="off" required>
 				</div>
 				<div class="row">
 					<span>Password</span>
-					<input type="password" name="password" class="full-width" [(ngModel)]="password">
+					<input type="password" name="password" class="full-width" [(ngModel)]="password" required>
 				</div>
 				<div class="row">
 					<button class="btn btn-primary">Loggin me!</button>
