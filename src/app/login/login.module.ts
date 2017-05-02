@@ -22,4 +22,4 @@ const routes: Routes = [
   declarations: [LoginComponent],
   providers:[DataService]
 })
-export class LoginModule { }
+export class LoginModule { } 

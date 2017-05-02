@@ -5,22 +5,19 @@
 			<button class="btn">Add new Transaction</button>
 			<table>
 				<thead>
-					<td id="t">Id</td>
-					<td id="t">Subject</td>
-					<td id="t">Amount</td>
-					<td id="t">Type</td>
-					<td id="t" colspan="3">Options</td>
+					<td id="t"><strong>Id</strong></td>
+					<td id="t"><strong>Subject</strong></td>
+					<td id="t"><strong>Amount</strong></td>
+					<td id="t"><strong>Type</strong></td>
+					<td id="t" colspan="3"><strong>Options</strong></td>
 				</thead>
 				<tbody>
-					<tr>
-						<td id="t">1</td>
-						<td id="t">Nombre de la transaction</td>
-						<td id="t">18.94</td>
-						<td id="t">Deposit</td>
+					<tr *ngFor="let trans of listado">
+						<td id="t">{{trans.id}}</td>
+						<td id="t">{{trans.category}} -- {{trans.subject}}</td>
+						<td id="t">{{trans.amount}}</td>
+						<td id="t">{{trans.tot}}</td>
 						<td id="t" colspan="3">
-							<button>
-								Ver
-							</button>
 							<button>
 								Editar
 							</button>
@@ -30,25 +27,6 @@
 						</td>
 					</tr>
 					<!--  -->
-					<tr>
-						<td id="t">2</td>
-						<td id="t">Este es un Nombre muy largo para mi transaction</td>
-						<td id="t">90.32</td>
-						<td id="t">Withdrawal</td>
-						<td id="t" colspan="3">
-							<button>
-								Ver
-							</button>
-							<button>
-								Editar
-							</button>
-							<button>
-								Eliminar
-							</button>
-						</td>
-					</tr>
-					<!--  -->
-
 				</tbody>
 			</table>
 		</div>

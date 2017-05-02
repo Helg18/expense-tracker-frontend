@@ -18,6 +18,9 @@ export class DataService {
   public eliminarCategorias;
   public actualizarCategorias;
 
+  //Transacciones
+  public listarTrans;
+
 
 
   constructor( private http: Http) { 
@@ -31,6 +34,9 @@ export class DataService {
     this.listaCategorias    = 'http://127.0.0.1:8000/api/category';
     this.eliminarCategorias = 'http://127.0.0.1:8000/api/category/';
     this.actualizarCategorias = 'http://127.0.0.1:8000/api/category/';
+
+    //TRANSACCIONES 
+    this.listarTrans = 'http://127.0.0.1:8000/api/transaction';
 
   }
 
@@ -158,6 +164,18 @@ export class DataService {
                       );
   }//categoriasCrear
 
+
+
+
+  //TRANSACCIONES
+  //Listar
+  transaccionListar(){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json')
+    headers.append('Authorization',  window.sessionStorage.getItem('miToken'))
+
+    return this.http.get(this.listarTrans, {headers: headers}).map(response => response.json());
+  }
 
 }
 

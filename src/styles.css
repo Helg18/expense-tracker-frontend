@@ -19,7 +19,8 @@ body{
 	border-radius: 5px;
 	flex-direction: column;
 	flex-basis: 40%;
-	overflow: hidden;
+	overflow: scroll;
+	max-height: 600px;
 }
 
 .mainbox{
