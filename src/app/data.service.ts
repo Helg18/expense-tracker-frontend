@@ -8,17 +8,27 @@ export class DataService {
 	public client_id;
 	public client_secret;
 
-	//End points
+//End points
+  //Usuarios
   public urlLogin;
-	public urlRegister;
+  public urlRegister;
+
+  //categorias
+  public listaCategorias;
+  public eliminarCategorias;
+
 
 
   constructor( private http: Http) { 
-    this.urlLogin = 'http://127.0.0.1:8000/oauth/token';
-  	this.urlRegister = 'http://127.0.0.1:8000/api/register';
-  	this.grant_type = 'password';
-  	this.client_id = '2';
-  	this.client_secret = 'bPJPNVw09uNa1a430OBrm7NjRbrtGFMn4IJCBOmj';
+    this.urlLogin      = 'http://127.0.0.1:8000/oauth/token';
+    this.urlRegister   = 'http://127.0.0.1:8000/api/register';
+    this.grant_type    = 'password';
+    this.client_id     = '2';
+    this.client_secret = 'bPJPNVw09uNa1a430OBrm7NjRbrtGFMn4IJCBOmj';
+
+    //CATEGORIAS
+    this.listaCategorias    = 'http://127.0.0.1:8000/api/category';
+    this.eliminarCategorias = 'http://127.0.0.1:8000/api/category/';
 
   }
 
@@ -77,7 +87,38 @@ export class DataService {
 
   }//end registerme
 
-  
+  //CATEGORIAS
+  //listar Categorias
+  categoriasListar(){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json')
+    headers.append('Authorization',  window.sessionStorage.getItem('miToken'))
+
+
+    return this.http.get(this.listaCategorias, {headers: headers}).map(response => response.json());
+  }//end categoriasListar
+
+  //eliminar Categorias
+  categoriaseliminar(data){
+    if (data == '' || data == undefined ) {
+      alert('No se recibieron los datos, por favor vuelva a intentarlo nuevamente');
+     return false;
+    }
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json')
+    headers.append('Authorization',  window.sessionStorage.getItem('miToken'))
+
+
+    return this.http.delete(this.eliminarCategorias+data, {headers: headers})
+                    .map(response => response.json())
+                    .subscribe(
+                        (data) => alert(data.msg)
+                      );
+
+  }//end categoriaseliminar
+
+
+
 
 }
 
