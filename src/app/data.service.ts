@@ -117,7 +117,23 @@ export class DataService {
 
   }//end categoriaseliminar
 
+  //crear categoria
+  categoriasCrear(data){
+    if (data == '' || data == undefined ) {
+      alert('No se recibieron los datos, por favor vuelva a intentarlo nuevamente');
+     return false;
+    }
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json')
+    headers.append('Authorization',  window.sessionStorage.getItem('miToken'))
+    let params = JSON.stringify({ category: data.categoria });
 
+    return this.http.post(this.listaCategorias, params, {headers:headers})
+                    .map(response => response.json())
+                    .subscribe(
+                      (data)=> alert(data.msg)
+                      );
+  }
 
 
 }

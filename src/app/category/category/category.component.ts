@@ -10,9 +10,13 @@ import { DataService } from '../../data.service';
 })
 export class CategoryComponent implements OnInit {
 	public listado;
+	public visible;
+	public categoria;
 
   constructor( private dataService: DataService) { 
   	this.listado ='';
+  	this.categoria ='';
+  	this.visible = true;
   }
 
   ngOnInit() {
@@ -39,7 +43,26 @@ export class CategoryComponent implements OnInit {
 		  	this.listar();
   		} 
   		return false;
+  }//end
+
+
+  formularioCrear(){
+  	if (this.visible) {
+  		this.visible = false;
+  	} else {
+  		this.visible = true;
+  	}
+
+  }//end formularioCrear
+
+  nueva(data){
+  	this.dataService.categoriasCrear(data);
+		this.visible = true;
+  	this.categoria ='';
+  	this.listar();
+  	return true;
   }
+
 
 
 }

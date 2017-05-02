@@ -19,13 +19,20 @@
 
 .add-category{
 	width: 100%;
-	display: inline-flex;
+	display: flex;
 }
 .add-category form{
 	display: flex;
-	width: 87%;
+	width: 100%;
 }
 
 .add-category form input[type=text]{
-	margin-top: 15px;
+	margin-top: 12px;
+}
+
+.add-category-head{
+}
+
+.add-category-body{
+	flex-grow: 1;
 }

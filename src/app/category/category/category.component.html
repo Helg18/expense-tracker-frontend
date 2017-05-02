@@ -3,11 +3,15 @@
 		<p class="titulo">Categories</p>
 		<div class="loginbox">
 			<div class="add-category">
-				<button class="btn">Add new category</button>
-				<form>
-					<input type="text" name="category" required autocomplete="off" class="full-width">
-					<input type="submit" name="submit" value="Save" class="btn btn-primary">
-				</form>
+				<div class="add-category-head">
+					<button class="btn" (click)="formularioCrear()">Add new category</button>
+				</div>
+				<div class="add-category-body" [hidden]="visible">
+					<form (ngSubmit)="nueva(this)">
+						<input type="text" name="category" required autocomplete="off" class="full-width" [(ngModel)]="categoria">
+						<input type="submit" name="submit" value="Save" class="btn btn-primary">
+					</form>
+				</div>
 			</div>
 			<table>
 				<thead>
