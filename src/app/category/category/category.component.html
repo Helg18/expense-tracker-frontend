@@ -12,6 +12,13 @@
 						<input type="submit" name="submit" value="Save" class="btn btn-primary">
 					</form>
 				</div>
+				<div class="add-category-body" [hidden]="modify">
+					<form (ngSubmit)="actualizar(this)">
+						<input type="text" name="id" class="full-width" readonly [(ngModel)]="modificarCategoryId">
+						<input type="text" name="category" required autocomplete="off" class="full-width" [(ngModel)]="modificarCategory">
+						<input type="submit" name="submit" value="Modify" class="btn btn-primary">
+					</form>
+				</div>
 			</div>
 			<table>
 				<thead>
@@ -24,7 +31,7 @@
 						<td id="c">{{ categoria.id}}</td>
 						<td id="c" width="280px">{{ categoria.category}}</td>
 						<td id="c" colspan="2">
-							<button (click)="mostrarFormulario(categoria)">
+							<button (click)="formModify(categoria)">
 								Editar
 							</button>
 							<button (click)="eliminar(categoria.id)">

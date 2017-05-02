@@ -16,6 +16,7 @@ export class DataService {
   //categorias
   public listaCategorias;
   public eliminarCategorias;
+  public actualizarCategorias;
 
 
 
@@ -29,6 +30,7 @@ export class DataService {
     //CATEGORIAS
     this.listaCategorias    = 'http://127.0.0.1:8000/api/category';
     this.eliminarCategorias = 'http://127.0.0.1:8000/api/category/';
+    this.actualizarCategorias = 'http://127.0.0.1:8000/api/category/';
 
   }
 
@@ -133,7 +135,28 @@ export class DataService {
                     .subscribe(
                       (data)=> alert(data.msg)
                       );
-  }
+  }//categoriasCrear
+
+
+  categoriasActualizar(data){
+    if (
+        data.modificarCategory == '' || data.modificarCategory == undefined ||
+        data.modificarCategoryId == '' || data.modificarCategoryId == undefined 
+        ) {
+      alert('No se recibieron los datos, por favor vuelva a intentarlo nuevamente');
+     return false;
+    }
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json')
+    headers.append('Authorization',  window.sessionStorage.getItem('miToken'))
+    let params = JSON.stringify({ category: data.modificarCategory });
+
+    return this.http.put(this.actualizarCategorias+data.modificarCategoryId, params, {headers:headers})
+                    .map(response => response.json())
+                    .subscribe(
+                      (data)=> alert(data.msg)
+                      );
+  }//categoriasCrear
 
 
 }

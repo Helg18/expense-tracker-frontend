@@ -11,12 +11,18 @@ import { DataService } from '../../data.service';
 export class CategoryComponent implements OnInit {
 	public listado;
 	public visible;
+	public modify;
+	public modificarCategory;
+	public modificarCategoryId;
 	public categoria;
 
   constructor( private dataService: DataService) { 
   	this.listado ='';
   	this.categoria ='';
+  	this.modificarCategory ='';
+  	this.modificarCategoryId ='';
   	this.visible = true;
+  	this.modify = true;
   }
 
   ngOnInit() {
@@ -31,9 +37,6 @@ export class CategoryComponent implements OnInit {
 							      });
   }//end listar
 
-  mostrarFormulario(data){
-  	alert('mostrar formulario');
-  }//end mostrarFormulario
 
   eliminar(data){
   	//console.log(data)
@@ -63,6 +66,24 @@ export class CategoryComponent implements OnInit {
   	return true;
   }
 
+  formModify(data){
+  	if (this.modify) {
+  		this.modificarCategory = data.category;
+  		this.modificarCategoryId = data.id;
+  		this.modify = false;
+  	} else {
+  		this.modify = true;
+  	}
+  }//end formModify
+
+  actualizar(data){
+		this.dataService.categoriasActualizar(data);
+		this.modificarCategory = "";
+		this.modificarCategoryId = "";
+		this.modify = true;
+		this.listar();
+  	return true;
+  }//actualizar
 
 
 }
