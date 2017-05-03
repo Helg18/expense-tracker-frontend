@@ -20,6 +20,7 @@ export class DataService {
 
   //Transacciones
   public listarTrans;
+  public listarTransPorDias;
 
 
 
@@ -31,12 +32,13 @@ export class DataService {
     this.client_secret = 'bPJPNVw09uNa1a430OBrm7NjRbrtGFMn4IJCBOmj';
 
     //CATEGORIAS
-    this.listaCategorias    = 'http://127.0.0.1:8000/api/category';
-    this.eliminarCategorias = 'http://127.0.0.1:8000/api/category/';
+    this.listaCategorias      = 'http://127.0.0.1:8000/api/category';
+    this.eliminarCategorias   = 'http://127.0.0.1:8000/api/category/';
     this.actualizarCategorias = 'http://127.0.0.1:8000/api/category/';
 
     //TRANSACCIONES 
-    this.listarTrans = 'http://127.0.0.1:8000/api/transaction/';
+    this.listarTrans        = 'http://127.0.0.1:8000/api/transaction/';
+    this.listarTransPorDias = 'http://127.0.0.1:8000/api/last/';
 
   }
 
@@ -196,6 +198,28 @@ export class DataService {
                       (data)=> alert(data.msg)
                       );
   }//transCrear
+
+  trasActualizar(data){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json')
+    headers.append('Authorization',  window.sessionStorage.getItem('miToken'))
+    let params = JSON.stringify({ subject: data.subject, amount: data.amount, tot: data.tot, category_id: data.categoryID, id: data.transID });
+    return this.http.put(this.listarTrans+data.transID, params, {headers:headers})
+                    .map(response => response.json())
+                    .subscribe(
+                      (data)=> alert(data.msg)
+                      );
+  }//transActualizar
+
+
+  transPorTiempo(days){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json')
+    headers.append('Authorization',  window.sessionStorage.getItem('miToken'))
+
+    return this.http.get(this.listarTransPorDias + days, {headers: headers}).map(response => response.json());
+  }//transPorTiempo
+
 
 }
 

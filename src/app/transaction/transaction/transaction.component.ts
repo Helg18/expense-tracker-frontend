@@ -16,22 +16,28 @@ export class TransactionComponent implements OnInit {
 
   //Visibles
   public crearForm;
+  public actualizaForm;
 
   //crear
   public subject;
   public categoryID;
   public tot;
   public amount;
+  public category;
+  public transID;
 
 
   constructor( private dataService: DataService) { 
-    this.listado = '';
-    this.categorias = '';
-    this.crearForm = true;
-    this.subject = '';
-    this.categoryID = '';
-    this.tot = '';
-    this.amount = '';
+    this.listado       = '';
+    this.categorias    = '';
+    this.crearForm     = true;
+    this.actualizaForm = true;
+    this.subject       = '';
+    this.categoryID    = '';
+    this.category      = '';
+    this.tot           = '';
+    this.amount        = '';
+    this.transID       = '';
   }
 
   ngOnInit() {
@@ -87,5 +93,46 @@ export class TransactionComponent implements OnInit {
     this.amount = '';
     this.listar();
   }//end nueva
+
+
+  //agregar una transaccion
+  //Mostrar formulario
+  actualizarNuevo(data){
+    console.log(data);
+    if (this.actualizaForm) {
+      this.actualizaForm = false
+
+      this.crearForm = true;
+      this.subject = data.subject;
+      this.categoryID = data.category_id;
+      this.category = data.category;
+      this.tot = data.tot;
+      this.amount = data.amount;
+      this.transID = data.id;
+    } else {
+      this.actualizaForm = true;
+    }
+  }//end formulario crear
+
+
+
+  actualizar(data){
+    this.dataService.trasActualizar(data);
+    this.crearForm = false;
+    this.subject = '';
+    this.categoryID = '';
+    this.category = '';
+    this.tot = '';
+    this.amount = '';
+    this.transID = '';
+    this.listar();
+  }
+
+  viewlastday(days){
+    this.dataService.transPorTiempo(days).subscribe(
+      (data) => this.listado = data
+    );
+    this.listar();
+  }
 
 }

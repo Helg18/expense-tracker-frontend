@@ -5,8 +5,13 @@
 			<div class="add-category">
 				<div class="add-category-head">
 					<button class="btn" (click)="formularioNuevo()">Add new Transaction</button>
+					<button class="btn" (click)="listar()">View All Transactions</button>
+					<button class="btn" (click)="viewlastday(7)">View last week</button>
+					<button class="btn" (click)="viewlastday(31)">View last month</button>
+					<button class="btn" (click)="viewlastday(365)">View last year</button>
 				</div>
 				<div class="add-category-body" [hidden]="crearForm">
+				<h4>Nueva transaccion</h4>
 					<form (ngSubmit)="nueva(this)">
 						<input type="text" name="subject" required autocomplete="off" class="full-width" placeholder="Subject" [(ngModel)]="subject">
 						<select required name="categorias" class="full-width" [(ngModel)]="categoryID" >
@@ -18,6 +23,25 @@
 						</select>
 						<input type="number" name="amount" required autocomplete="off" class="full-width" placeholder="amount" [(ngModel)]="amount">
 						<input type="submit" name="submit" value="Save" class="btn btn-primary">
+					</form>
+				</div>
+				<hr>
+				<div class="add-category-body" [hidden]="actualizaForm">
+				<h4>Actualizar transaccion</h4>
+					<form (ngSubmit)="actualizar(this)">
+						<input type="text" name="id" required class="full-width" readonly [(ngModel)]="transID">
+						<input type="text" name="subject" required autocomplete="off" class="full-width" placeholder="Subject" [(ngModel)]="subject">
+						<select required name="categorias" class="full-width"  [(ngModel)]="categoryID">
+							<option value="{{categoryID}}" selected>{{category}}</option> 
+							<option *ngFor="let cat of categorias" value="{{cat.id}}">{{cat.category}}</option> 
+						</select>
+						<select required name="tot" class="full-width" [(ngModel)]="tot">
+							<option value="{{ tot }}" selected>{{ tot }}</option> 
+							<option value="deposit">Deposit</option> 
+							<option value="withdrawal">Withdrawal</option> 
+						</select>
+						<input type="number" name="amount" required autocomplete="off" class="full-width" placeholder="amount" [(ngModel)]="amount">
+						<input type="submit" name="submit" value="Actualizar" class="btn btn-primary">
 					</form>
 				</div>
 			</div>
@@ -32,12 +56,12 @@
 				<tbody>
 					<tr *ngFor="let trans of listado">
 						<td id="t">{{trans.id}}</td>
-						<td id="t">{{trans.category}} -- {{trans.subject}}</td>
+						<td id="t">{{trans.subject}}</td>
 						<td id="t">{{trans.amount}}</td>
 						<td id="t">{{trans.tot}}</td>
 						<td id="t" colspan="3">
 							
-							<button>
+							<button (click)="actualizarNuevo(trans)">
 								Editar
 							</button>
 							<button (click)="eliminar(trans.id)">
