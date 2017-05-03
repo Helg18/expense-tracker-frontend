@@ -15,9 +15,22 @@ export class TransactionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataService.transaccionListar().subscribe(
+    this.listar();
+  }
+
+  //listar todas las trans
+  listar(){
+        this.dataService.transaccionListar().subscribe(
       (data) => this.listado = data
     );
+  }//listar
+
+  //eliminar una transaccion
+  eliminar(data){
+    this.dataService.transEliminar(data).subscribe(
+      (data)=> alert(data.msg)
+    );
+    this.listar();
   }
 
 }
