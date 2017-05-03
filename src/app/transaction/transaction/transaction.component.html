@@ -2,7 +2,25 @@
 	<div class="mainbox">
 		<p class="titulo">Transactions</p>
 		<div class="loginbox">
-			<button class="btn">Add new Transaction</button>
+			<div class="add-category">
+				<div class="add-category-head">
+					<button class="btn" (click)="formularioNuevo()">Add new Transaction</button>
+				</div>
+				<div class="add-category-body" [hidden]="crearForm">
+					<form (ngSubmit)="nueva(this)">
+						<input type="text" name="subject" required autocomplete="off" class="full-width" placeholder="Subject" [(ngModel)]="subject">
+						<select required name="categorias" class="full-width" [(ngModel)]="categoryID" >
+							<option *ngFor="let cat of categorias" value="{{cat.id}}">{{cat.category}}</option> 
+						</select>
+						<select required name="tot" class="full-width" [(ngModel)]="tot">
+							<option value="deposit">Deposit</option> 
+							<option value="withdrawal">Withdrawal</option> 
+						</select>
+						<input type="number" name="amount" required autocomplete="off" class="full-width" placeholder="amount" [(ngModel)]="amount">
+						<input type="submit" name="submit" value="Save" class="btn btn-primary">
+					</form>
+				</div>
+			</div>
 			<table>
 				<thead>
 					<td id="t"><strong>Id</strong></td>
@@ -18,6 +36,7 @@
 						<td id="t">{{trans.amount}}</td>
 						<td id="t">{{trans.tot}}</td>
 						<td id="t" colspan="3">
+							
 							<button>
 								Editar
 							</button>

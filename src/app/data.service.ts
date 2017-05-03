@@ -184,9 +184,18 @@ export class DataService {
     headers.append('Authorization',  window.sessionStorage.getItem('miToken'))
 
     return this.http.delete(this.listarTrans+data, {headers: headers}).map(response => response.json());
-  
+  }//transeliminar
+
+  transCrear(data){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json')
+    headers.append('Authorization',  window.sessionStorage.getItem('miToken'))
+    let params = JSON.stringify({ subject: data.subject, amount: data.amount, tot:data.tot, category_id:data.categoryID });
     
-  }
+    return this.http.post(this.listarTrans, params, {headers: headers}).map(response => response.json()).subscribe(
+                      (data)=> alert(data.msg)
+                      );
+  }//transCrear
 
 }
 
