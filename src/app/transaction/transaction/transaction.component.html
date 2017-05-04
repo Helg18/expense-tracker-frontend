@@ -1,6 +1,13 @@
 <div class="container">
 	<div class="mainbox">
 		<p class="titulo">Transactions</p>
+		<div class="totales">
+			<ul>
+				<li>Deposit: {{ depositos }}</li>
+				<li>Withdrawal: {{ retiros }}</li>
+				<li>Total: {{ depositos + retiros }}</li>
+			</ul>
+		</div>
 		<div class="loginbox">
 			<div class="add-category">
 				<div class="add-category-head">
@@ -47,15 +54,15 @@
 			</div>
 			<table>
 				<thead>
-					<td id="t"><strong>Id</strong></td>
-					<td id="t"><strong>Subject</strong></td>
-					<td id="t"><strong>Amount</strong></td>
+					<td id="t"><strong (click)="orderedById()">Id</strong></td>
+					<td id="t"><strong (click)="orderedBySubject()">Subject</strong></td>
+					<td id="t"><strong (click)="orderedByAmount()">Amount</strong></td>
 					<td id="t"><strong>Type</strong></td>
 					<td id="t" colspan="3"><strong>Options</strong></td>
 				</thead>
 				<tbody>
-					<tr *ngFor="let trans of listado">
-						<td id="t">{{trans.id}}</td>
+					<tr *ngFor="let trans of listado | orderBy: 'id':orderbyid | orderBy: 'subject':orderbysubject | orderBy: 'amount':orderbyamount ">
+						<td id="t">{{trans.id }}</td>
 						<td id="t">{{trans.subject}}</td>
 						<td id="t">{{trans.amount}}</td>
 						<td id="t">{{trans.tot}}</td>

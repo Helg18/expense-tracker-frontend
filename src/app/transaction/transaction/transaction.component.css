@@ -1,8 +1,11 @@
+strong{
+	cursor: pointer;
+}
+
 .loginbox{
 	background-color: #eee;
 	border-radius: 5px;
 	padding: 10px;
-
 }
 
 .row{
@@ -16,3 +19,16 @@
 	font-size: 24px;
 	padding: 3px 3px;
 }
+
+.totales ul {
+	display: flex;
+	justify-content: center;
+}
+
+.totales li {
+ 	flex-grow: 1;
+	list-style: none;
+	font-size: 28px;
+	flex-basis: 25%;
+}
+

@@ -25,6 +25,13 @@ export class TransactionComponent implements OnInit {
   public amount;
   public category;
   public transID;
+  public retiros;
+  public depositos;
+
+  //orders
+  public orderbyid;
+  public orderbysubject;
+  public orderbyamount;
 
 
   constructor( private dataService: DataService) { 
@@ -38,11 +45,25 @@ export class TransactionComponent implements OnInit {
     this.tot           = '';
     this.amount        = '';
     this.transID       = '';
+    this.retiros       = '';
+    this.depositos     = '';
+    this.orderbyid     = true;
+    this.orderbysubject= true;
+    this.orderbyamount = true;
   }
 
   ngOnInit() {
     this.todascategorias();
     this.listar();
+  }
+
+  totales(){
+    this.dataService.depositTotal().subscribe(
+      (data)=> this.depositos = data
+      );
+    this.dataService.withdrawalTotal().subscribe(
+      (data)=> this.retiros = data
+      );
   }
 
   //listar categorias
@@ -59,6 +80,7 @@ export class TransactionComponent implements OnInit {
         this.dataService.transaccionListar().subscribe(
       (data) => this.listado = data
     );
+        this.totales();
   }//listar
 
   //eliminar una transaccion
@@ -134,5 +156,29 @@ export class TransactionComponent implements OnInit {
     );
     this.listar();
   }
+
+  orderedById(){
+    if (this.orderbyid) {
+      this.orderbyid = false;
+    } else {
+      this.orderbyid = true;
+    }//if
+  }//order id
+
+  orderedBySubject(){
+    if (this.orderbysubject) {
+      this.orderbysubject = false;
+    } else {
+      this.orderbysubject = true;
+    }//if
+  }//order Subject
+
+  orderedByAmount(){
+    if (this.orderbyamount) {
+      this.orderbyamount = false;
+    } else {
+      this.orderbyamount = true;
+    }//if
+  }//order Subject
 
 }

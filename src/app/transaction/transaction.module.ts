@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DataService } from "../data.service";
 import { FormsModule } from "@angular/forms";
 import 'rxjs/Rx'
+import { Ng2OrderModule } from 'ng2-order-pipe';
 
 const routes: Routes = [
 	{
@@ -17,7 +18,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    FormsModule, Ng2OrderModule,
     RouterModule.forChild(routes)
   ],
   declarations: [TransactionComponent],

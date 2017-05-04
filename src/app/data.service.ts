@@ -21,6 +21,8 @@ export class DataService {
   //Transacciones
   public listarTrans;
   public listarTransPorDias;
+  public totalDepositos;
+  public totalWithdrawal;
 
 
 
@@ -39,6 +41,8 @@ export class DataService {
     //TRANSACCIONES 
     this.listarTrans        = 'http://127.0.0.1:8000/api/transaction/';
     this.listarTransPorDias = 'http://127.0.0.1:8000/api/last/';
+    this.totalDepositos     = 'http://127.0.0.1:8000/api/deposit/';
+    this.totalWithdrawal    = 'http://127.0.0.1:8000/api/withdrawal/';
 
   }
 
@@ -221,5 +225,22 @@ export class DataService {
   }//transPorTiempo
 
 
+
+  //Deposit total
+  depositTotal(){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json')
+    headers.append('Authorization',  window.sessionStorage.getItem('miToken'))
+
+    return this.http.get(this.totalDepositos, {headers: headers}).map(response => response.json());  
+  }//depositTotal
+
+  withdrawalTotal(){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json')
+    headers.append('Authorization',  window.sessionStorage.getItem('miToken'))
+
+    return this.http.get(this.totalWithdrawal, {headers: headers}).map(response => response.json());  
+  }//withdrawalTotal
 }
 
